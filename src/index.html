@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>IqPwa</title>
+  <title>IQ Pwa</title>
 
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,12 +12,12 @@
   <meta name="theme-color" content="#f48c5b">
 
   <link rel="manifest" href="/manifest.json">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 </head>
 <body>
-    <app-root></app-root>
-    <div class="loading">
-        <h1>loading IQ PWApp...</h1>
-    </div>
+    <app-root>Loading IQ PWApp...</app-root>
     <script>
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('/service-worker.js')
@@ -28,6 +28,6 @@
             console.log('SW error', err);
           });
         }
-      </script>
+    </script>
 </body>
 </html>

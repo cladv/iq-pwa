@@ -1,0 +1,66 @@
+<div class="form-container">
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Crear un nuevo menu</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" #formData='ngForm'>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="Nombre corto" [(ngModel)]="newMenu.name" [ngModelOptions]="{standalone: true}" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="Descripcion" [(ngModel)]="newMenu.desc" [ngModelOptions]="{standalone: true}" required>
+              </mat-form-field>
+              <button mat-raised-button [disabled]="newMenu.name.length < 1 || newMenu.desc.length < 1" (click)=addOne() color="primary">Agregar</button>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      
+    </mat-card-actions>
+  </mat-card>
+<br>
+  <div class="example-header">
+
+  <mat-card class="example-card">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+    <mat-icon>search</mat-icon>
+  </mat-card>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+    <mat-table #table [dataSource]="dataSource" [trackBy]="trackByUid" matSort class="animate">
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let m"> {{ m.name }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="desc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
+        <mat-cell *matCellDef="let m"> {{ m.desc }} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="edit">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+          <mat-cell *matCellDef="let m"> 
+            <button mat-raised-button  color="primary" (click)="openDialogEdit(m)">Modificar</button> 
+          </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+          <mat-cell *matCellDef="let m"> 
+            <button mat-raised-button  color="primary" (click)="openDialogDelete(m)">Borrar</button> 
+          </mat-cell>
+      </ng-container>
+      
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+  </mat-table>
+  <!--mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator-->
+</div>
+</div>

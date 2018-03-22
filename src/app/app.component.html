@@ -1,7 +1,59 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
+<!-- <div id="wrapper">
+    <top-nav></top-nav>
+    <div class="content columns">
+      <aside class="column is-2 is-offset-1">
+        <app-user-signin></app-user-signin>
+      </aside>
+  
+      <main class="column is-8">
+        <notification-message></notification-message>
+        <router-outlet></router-outlet>
+      </main>
+    </div> -->
 
+
+<mat-sidenav-container class="all-wrap" fullscreen>
+  <mat-sidenav #sidenav>
+    <mat-list>
+      <mat-list-item [routerLink]="['/']">Inicio</mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <div class="page-wrap">
+    <header role="banner">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <button type="button" mat-icon-button (click)="sidenav.open()" title="Open sidenav">
+            <span>IQ App</span>
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span class="menu-spacer"></span>
+          <button mat-button>Ayuda</button>
+          <button mat-button>Contacto</button>
+
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['/login']">
+              <mat-icon>account_circle</mat-icon>
+              <span>Login</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Alertas Off</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>settings</mat-icon>
+              <span>Configuracion</span>
+            </button>
+          </mat-menu>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </header>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+    <notification-message></notification-message>
+  </div>
+</mat-sidenav-container>
