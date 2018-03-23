@@ -12,7 +12,7 @@ export class TopNavComponent implements OnInit {
   toggleCollapse() {
     this.show = !this.show;
   }
-  
+
   constructor() { }
 
   ngOnInit() {

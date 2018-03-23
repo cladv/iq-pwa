@@ -15,7 +15,7 @@ interface NewMenu {
 @Injectable()
 export class MenuService {
   menusCollection: AngularFirestoreCollection<Menu>;
-  menuDocument:   AngularFirestoreDocument<Menu>;
+  menuDocument: AngularFirestoreDocument<Menu>;
   constructor(private afs: AngularFirestore) {
     this.menusCollection = this.afs.collection('menu', (ref) => ref.orderBy('name', 'asc').limit(50));
   }

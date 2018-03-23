@@ -8,9 +8,9 @@ describe('MenuEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuEditComponent ]
+      declarations: [MenuEditComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

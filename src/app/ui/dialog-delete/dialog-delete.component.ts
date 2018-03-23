@@ -7,10 +7,10 @@ import { MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./dialog-delete.component.scss']
 })
 export class DialogDeleteComponent implements OnInit {
- 
+
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
-  
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
   ngOnInit() {
   }
 

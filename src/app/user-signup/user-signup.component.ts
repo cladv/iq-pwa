@@ -16,21 +16,21 @@ export class UserSignupComponent implements OnInit {
   state: string = '';
   error: any;
 
-  constructor(private auth: AuthService,private router: Router) {
+  constructor(private auth: AuthService, private router: Router) {
 
   }
 
   onSubmit(formData) {
-    if(formData.valid) {
+    if (formData.valid) {
       this.auth.emailSignUp(formData.value['email'], formData.value['password'])
-      .then((success) => {
+        .then((success) => {
           console.log("mmm" + success);
-//        this.router.navigate(['/'])
-      })
-      .catch(
-        (err) => {
-        this.error = err;
-      })
+          //        this.router.navigate(['/'])
+        })
+        .catch(
+          (err) => {
+            this.error = err;
+          })
     }
   }
 

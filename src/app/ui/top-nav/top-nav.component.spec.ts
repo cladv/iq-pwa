@@ -8,9 +8,9 @@ describe('TopNavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TopNavComponent ]
+      declarations: [TopNavComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

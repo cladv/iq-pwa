@@ -22,9 +22,9 @@ export class AuthService {
   user: Observable<User | null>;
 
   constructor(private afAuth: AngularFireAuth,
-              private afs: AngularFirestore,
-              private router: Router,
-              private notify: NotifyService) {
+    private afs: AngularFirestore,
+    private router: Router,
+    private notify: NotifyService) {
 
     this.user = this.afAuth.authState
       .switchMap((user) => {
@@ -61,10 +61,10 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.notify.update('Welcome ' + credential.additionalUserInfo.profile.given_name, 'success');
-        this.notify.update('Welcome ' + credential.displayName , 'success');
+        this.notify.update('Welcome ' + credential.displayName, 'success');
         return this.updateUserData(credential.user);
       })
-      .catch((error) => this.handleError(error) );
+      .catch((error) => this.handleError(error));
   }
 
   //// Anonymous Auth ////
@@ -91,7 +91,7 @@ export class AuthService {
       .catch((error) => {
         this.handleError(error);
         return error;
-       });
+      });
   }
 
   emailLogin(email: string, password: string) {
@@ -100,7 +100,7 @@ export class AuthService {
         this.notify.update('Welcome to Firestarter!!!', 'success')
         return this.updateUserData(user); // if using firestore
       })
-      .catch((error) => this.handleError(error) );
+      .catch((error) => this.handleError(error));
   }
 
   // Sends email allowing user to reset password
@@ -114,7 +114,7 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-        this.router.navigate(['/']);
+      this.router.navigate(['/']);
     });
   }
 

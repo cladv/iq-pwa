@@ -16,14 +16,14 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
   imports: [
     CommonModule,
     FormsModule,
- //   SharedModule,
+    //   SharedModule,
     AngularFirestoreModule.enablePersistence(),
   ],
   declarations: [
-//    MenuListComponent,
-//    MenuDetailComponent,
-//  MenuEditComponent
-],
+    //    MenuListComponent,
+    //    MenuDetailComponent,
+    //  MenuEditComponent
+  ],
   providers: [MenuService],
 })
 export class MenuModule { }

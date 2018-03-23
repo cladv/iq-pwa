@@ -8,5 +8,5 @@ export class Menu {
         public name: string,
         public desc: string,
         public router: string,
-    ){}
+    ) { }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { AuthService } from '../../core/auth.service';
 import { MaterialModule } from '../../core/material.module';
@@ -27,12 +27,12 @@ export class MenuEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public authService: AuthService,
     private menuService: AngularFirestore,
-    public snackBar: MatSnackBar) { 
-     this.newMenu.name = data.name;
-     this.newMenu.desc = data.desc;
-     this.newMenu.router = data.router;
-     this.uid = this.data.uid;
-    }
+    public snackBar: MatSnackBar) {
+    this.newMenu.name = data.name;
+    this.newMenu.desc = data.desc;
+    this.newMenu.router = data.router;
+    this.uid = this.data.uid;
+  }
 
   ngOnInit() {
   }

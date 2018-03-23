@@ -1,52 +1,56 @@
-<div *ngIf="!(auth.user | async); else alreadyLoggedIn">>  
-    <mat-card>
-
-        <mat-card-content>
-            <form class="example-form" #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-              <table class="example-full-width" cellspacing="0">
-                <tr>
-                  <td>
-                    <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                <td><mat-form-field class="example-full-width">
-                  <input matInput placeholder="Password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'" name="password" required>
-                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                </mat-form-field></td>
-              </tr></table>
-            </form>
-          </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button (click)=onSubmit(formData)>Ingresar con Email</button>
-     </mat-card-actions> 
-     <mat-card-actions>
-        Sin Cuenta? Ingrese con redes sociales o cree su cuenta <a routerLink="/register" routerLinkActive="active"> <strong>AQUI!</strong></a>
-    </mat-card-actions> 
-     <mat-card-actions>
-        <button mat-raised-button (click)="signInWithGoogle()" class="button btn-social btn-google">
-          Google</button>
+<div *ngIf="!(auth.user | async); else alreadyLoggedIn">
+  <mat-card>
+    <mat-card-content>
+      <form class="example-form" #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'" name="password" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)=onSubmit(formData)>Ingresar con Email</button>
     </mat-card-actions>
     <mat-card-actions>
-        <button mat-raised-button (click)="signInWithGithub()" class="button btn-social btn-github">
-          Github</button>
+      Sin Cuenta? Ingrese con redes sociales o cree su cuenta
+      <a routerLink="/signup" routerLinkActive="active">
+        <strong>AQUI!</strong>
+      </a>
     </mat-card-actions>
     <mat-card-actions>
-        <button mat-raised-button (click)="signInWithFacebook()" class="button btn-social btn-facebook">
-          Facebook</button>
+      <button mat-raised-button (click)="signInWithGoogle()" class="button btn-social btn-google">
+        Google</button>
     </mat-card-actions>
     <mat-card-actions>
-        <button mat-raised-button (click)="signInWithTwitter()" class="button btn-social btn-twitter">
-          Twitter</button>
+      <button mat-raised-button (click)="signInWithGithub()" class="button btn-social btn-github">
+        Github</button>
     </mat-card-actions>
-     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-    </mat-card>
+    <mat-card-actions>
+      <button mat-raised-button (click)="signInWithFacebook()" class="button btn-social btn-facebook">
+        Facebook</button>
+    </mat-card-actions>
+    <mat-card-actions>
+      <button mat-raised-button (click)="signInWithTwitter()" class="button btn-social btn-twitter">
+        Twitter</button>
+    </mat-card-actions>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card>
 </div>
 <ng-template #alreadyLoggedIn>
-    <p class="text-success">
-      Already logged in!
-    </p>
+  <p class="text-success">
+    Already logged in!
+  </p>
 </ng-template>
-

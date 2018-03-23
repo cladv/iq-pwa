@@ -32,10 +32,10 @@ export class MenuListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-//    this.afs.collection<any>('menu').snapshotChanges().map((actions) => {
-      this.afs.collection<Menu>('menu').snapshotChanges().map((actions) => {
-        return actions.map((a) => {
-//        const data = a.payload.doc.data() as any;
+    //    this.afs.collection<any>('menu').snapshotChanges().map((actions) => {
+    this.afs.collection<Menu>('menu').snapshotChanges().map((actions) => {
+      return actions.map((a) => {
+        //        const data = a.payload.doc.data() as any;
         const data = a.payload.doc.data() as Menu;
         return { id: a.payload.doc.id, name: data.name, desc: data.desc, router: data.router };
       });

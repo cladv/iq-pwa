@@ -34,38 +34,38 @@ export class UserSigninComponent implements OnInit {
   }
   signInEmail() {
     this.auth.emailLogin(this.email, this.password)
-    .then(() => this.afterSignIn());
+      .then(() => this.afterSignIn());
   }
   /// Social Login
- signInWithGithub() {
-  this.auth.githubLogin()
-  .then(() => this.afterSignIn());
-}
+  signInWithGithub() {
+    this.auth.githubLogin()
+      .then(() => this.afterSignIn());
+  }
 
-signInWithGoogle() {
-  this.auth.googleLogin()
-    .then(() => this.afterSignIn());
-}
+  signInWithGoogle() {
+    this.auth.googleLogin()
+      .then(() => this.afterSignIn());
+  }
 
-signInWithFacebook() {
-  this.auth.facebookLogin()
-    .then(() => this.afterSignIn());
-}
+  signInWithFacebook() {
+    this.auth.facebookLogin()
+      .then(() => this.afterSignIn());
+  }
 
-signInWithTwitter() {
-  this.auth.twitterLogin()
-    .then(() => this.afterSignIn());
-}
+  signInWithTwitter() {
+    this.auth.twitterLogin()
+      .then(() => this.afterSignIn());
+  }
 
-/// Anonymous Sign In
-signInAnonymously() {
-  this.auth.anonymousLogin()
-    .then(() => this.afterSignIn());
-}
+  /// Anonymous Sign In
+  signInAnonymously() {
+    this.auth.anonymousLogin()
+      .then(() => this.afterSignIn());
+  }
 
-/// Shared
-private afterSignIn() {
-  // Do after login stuff here, such router redirects, toast messages, etc.
-  //this.router.navigate(['/']);
-}
+  /// Shared
+  private afterSignIn() {
+    // Do after login stuff here, such router redirects, toast messages, etc.
+    //this.router.navigate(['/']);
+  }
 }

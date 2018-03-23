@@ -8,9 +8,9 @@ describe('FooterNavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterNavComponent ]
+      declarations: [FooterNavComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
