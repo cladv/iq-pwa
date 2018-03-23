@@ -95,7 +95,7 @@ export class AuthService {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.notify.update('Welcome to Firestarter!!!', 'success');
-        return this.updateUserData(user); // if using firestore
+        return this.updateUserData(user);
       })
       .catch((error) => {
         this.handleError(error);
@@ -107,7 +107,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
         this.notify.update('Welcome to Firestarter!!!', 'success')
-        return this.updateUserData(user); // if using firestore
+        //return this.updateUserData(user);
       })
       .catch((error) => this.handleError(error));
   }

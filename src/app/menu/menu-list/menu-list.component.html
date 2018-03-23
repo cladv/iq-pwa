@@ -1,6 +1,4 @@
 <div class="form-container">
-
-
     <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -21,10 +19,7 @@
               <button mat-raised-button [disabled]="newMenu.name.length < 1 || newMenu.desc.length < 1" (click)=addOne() color="primary">Agregar</button>
             </form>
               </mat-expansion-panel>
-
       </mat-accordion>
-
-
 
   <!-- <mat-card class="example-card">
     <mat-card-header>
@@ -71,16 +66,11 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
         <mat-cell *matCellDef="let m"> {{ m.desc }} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="edit">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
         <mat-cell *matCellDef="let m">
-          <button mat-raised-button color="primary" (click)="openDialogEdit(m)">Modificar</button>
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
-        <mat-cell *matCellDef="let m">
-          <button mat-raised-button color="primary" (click)="openDialogDelete(m)">Borrar</button>
+            <mat-icon (click)="openDialogEdit(m)">description</mat-icon>
+            <mat-icon (click)="openDialogDelete(m)">delete</mat-icon>
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

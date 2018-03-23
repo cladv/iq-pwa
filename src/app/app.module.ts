@@ -27,6 +27,8 @@ import { NotificationMessageComponent } from './ui/notification-message/notifica
 import { FooterNavComponent } from './ui/footer-nav/footer-nav.component';
 import { DialogDeleteComponent } from './ui/dialog-delete/dialog-delete.component';
 import { SideNavComponent } from './ui/side-nav/side-nav.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { SideNavComponent } from './ui/side-nav/side-nav.component';
     FooterNavComponent,
     DialogDeleteComponent,
     SideNavComponent,
+    UserListComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,7 @@ import { SideNavComponent } from './ui/side-nav/side-nav.component';
     CoreModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  entryComponents: [DialogDeleteComponent, MenuEditComponent],
+  entryComponents: [DialogDeleteComponent, MenuEditComponent, UserEditComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

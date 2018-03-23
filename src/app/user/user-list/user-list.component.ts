@@ -1,3 +1,4 @@
+
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 
 import { AuthService } from '../../core/auth.service';
@@ -5,21 +6,21 @@ import { MaterialModule } from '../../core/material.module';
 import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 
 import { DialogDeleteComponent } from '../../ui/dialog-delete/dialog-delete.component';
-import { MenuService } from '../menu.service';
-import { Menu } from '../menu-model';
-import { MenuEditComponent } from '../menu-edit/menu-edit.component';
+//import { MenuService } from '../menu.service';
+import { User } from '../user-model';
+import { UserEditComponent } from '../user-edit/user-edit.component';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Component({
-  selector: 'app-menu-list',
-  templateUrl: './menu-list.component.html',
-  styleUrls: ['./menu-list.component.scss']
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss']
 })
-export class MenuListComponent implements AfterViewInit {
-  newMenu = new Menu('', '', '');
+export class UserListComponent implements AfterViewInit {
+  newUser = new User('', '', '', '', '');
   snackMessage;
-  displayedColumns = ['name', 'desc', 'actions'];
+  displayedColumns = ['displayName', 'company', 'profile', 'email', 'actions'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,11 +34,18 @@ export class MenuListComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     //    this.afs.collection<any>('menu').snapshotChanges().map((actions) => {
-    this.afs.collection<Menu>('menu').snapshotChanges().map((actions) => {
+    this.afs.collection<User>('users').snapshotChanges().map((actions) => {
       return actions.map((a) => {
         //        const data = a.payload.doc.data() as any;
-        const data = a.payload.doc.data() as Menu;
-        return { id: a.payload.doc.id, name: data.name, desc: data.desc, router: data.router };
+        const data = a.payload.doc.data() as User;
+        return { 
+          id: a.payload.doc.id, 
+          displayName: data.displayName, 
+          email: data.email, 
+          photoURL: data.photoURL,
+          company: data.company,
+          profile: data.profile,
+        };
       });
     }).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
@@ -54,31 +62,40 @@ export class MenuListComponent implements AfterViewInit {
   }
 
   addOne() {
-    const menu = {
-      name: this.newMenu.name,
-      desc: this.newMenu.desc,
-      router: this.newMenu.router
+    const user = {
+      displayName: this.newUser.displayName,
+      email: this.newUser.email,
+      photoURL: this.newUser.photoURL,
+      company: this.newUser.company,
+      profile: this.newUser.profile
     }
-    this.afs.collection('menu').add(menu).then(ref => {
+    this.afs.collection('users').add(user).then(ref => {
       console.log('Added document with ID: ', ref.id);
       this.snackMessage = 'Menu creado exitosamente';
       this.openSnackBar();
-      this.newMenu.name = '';
-      this.newMenu.desc = '';
-      this.newMenu.router = '';
+      this.newUser.displayName = '';
+      this.newUser.email = '';
+      this.newUser.photoURL = '';
+      this.newUser.company = '';
+      this.newUser.profile = '';
     });
   }
   deleteOne(data) {
     console.log(data);
-    this.afs.doc('menu/' + data.id).delete().then(() => {
-      console.log('deleted');
+    this.afs.doc('users/' + data.id).delete().then(() => {
     })
   }
 
   openDialogEdit(data): void {
-    const dialogRef = this.dialog.open(MenuEditComponent, {
+    const dialogRef = this.dialog.open(UserEditComponent, {
       width: '350px',
-      data: { uid: data.id, name: data.name, desc: data.desc, router: data.router }
+      data: { uid: data.id, 
+              displayName: data.displayName, 
+              email: data.email, 
+              photoURL: data.photoURL,
+              company: data.company,
+              profile: data.profile,
+            }
     });
   }
 
@@ -91,7 +108,7 @@ export class MenuListComponent implements AfterViewInit {
       console.log(`Dialog result: ${result}`);
       if (result) {
         this.deleteOne(data);
-        this.snackMessage = 'Menu Eliminado!';
+        this.snackMessage = 'User Eliminado!';
         this.openSnackBar();
       }
     });

@@ -1,0 +1,66 @@
+<div class="form-container">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Nuevo Usuario</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <form class="example-form" #formData='ngForm'>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nombre" [(ngModel)]="newUser.displayName" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" [(ngModel)]="newUser.email" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Compania" [(ngModel)]="newUser.company" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+        <button mat-raised-button [disabled]="newUser.displayName.length < 1 || newUser.email.length < 1" (click)=addOne() color="primary">Agregar</button>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <br>
+  <div class="example-header">
+    <mat-card class="example-card">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+      </mat-form-field>
+      <mat-icon>search</mat-icon>
+    </mat-card>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table #table [dataSource]="dataSource" [trackBy]="trackByUid" matSort class="animate">
+      <ng-container matColumnDef="displayName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </mat-header-cell>
+        <mat-cell *matCellDef="let u"> {{ u.displayName }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="company">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Compania </mat-header-cell>
+        <mat-cell *matCellDef="let u"> {{ u.company }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="profile">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Perfil </mat-header-cell>
+        <mat-cell *matCellDef="let u"> {{ u.profile }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+        <mat-cell *matCellDef="let u"> {{ u.email }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let u">
+          <!--button mat-raised-button color="primary" (click)="openDialogEdit(u)">Modificar</button-->
+          <mat-icon (click)="openDialogEdit(u)">description</mat-icon>
+          <mat-icon (click)="openDialogDelete(u)">delete</mat-icon>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+    </mat-table>
+    <!--mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator-->
+  </div>
+</div>
