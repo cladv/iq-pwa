@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatToolbarModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, MatCardModule, MatSidenavModule, MatSnackBarModule, MatPaginatorModule } from '@angular/material';
 
 import { MatCheckboxModule, MatGridListModule } from '@angular/material';
-import { MatListModule, MatMenuModule } from '@angular/material';
+import { MatListModule, MatMenuModule, MatExpansionModule } from '@angular/material';
 
 import {
   MatTableModule,
@@ -33,7 +33,7 @@ import { MatSnackBar } from '@angular/material';
     MatTableModule,
     MatFormFieldModule,
     MatSortModule,
-    MatDialogModule, MatPaginatorModule
+    MatDialogModule, MatPaginatorModule, MatExpansionModule
   ],
   exports: [BrowserAnimationsModule,
     MatButtonModule,
@@ -52,7 +52,7 @@ import { MatSnackBar } from '@angular/material';
     MatTableModule,
     MatFormFieldModule,
     MatSortModule,
-    MatDialogModule, MatPaginatorModule
+    MatDialogModule, MatPaginatorModule, MatExpansionModule
   ]
 })
 

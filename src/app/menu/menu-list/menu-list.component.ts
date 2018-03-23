@@ -57,7 +57,7 @@ export class MenuListComponent implements AfterViewInit {
     const menu = {
       name: this.newMenu.name,
       desc: this.newMenu.desc,
-      route: this.newMenu.router
+      router: this.newMenu.router
     }
     this.afs.collection('menu').add(menu).then(ref => {
       console.log('Added document with ID: ', ref.id);

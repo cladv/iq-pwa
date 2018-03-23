@@ -26,6 +26,7 @@ import { TopNavComponent } from './ui/top-nav/top-nav.component';
 import { NotificationMessageComponent } from './ui/notification-message/notification-message.component';
 import { FooterNavComponent } from './ui/footer-nav/footer-nav.component';
 import { DialogDeleteComponent } from './ui/dialog-delete/dialog-delete.component';
+import { SideNavComponent } from './ui/side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { DialogDeleteComponent } from './ui/dialog-delete/dialog-delete.componen
     NotificationMessageComponent,
     FooterNavComponent,
     DialogDeleteComponent,
+    SideNavComponent,
   ],
   imports: [
     BrowserModule,

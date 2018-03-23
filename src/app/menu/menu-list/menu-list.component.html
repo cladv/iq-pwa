@@ -1,6 +1,32 @@
 <div class="form-container">
 
-  <mat-card class="example-card">
+
+    <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Nuevo Menu</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <form class="example-form" #formData='ngForm'>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nombre" [(ngModel)]="newMenu.name" [ngModelOptions]="{standalone: true}" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Descripcion" [(ngModel)]="newMenu.desc" [ngModelOptions]="{standalone: true}" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Router" [(ngModel)]="newMenu.router" [ngModelOptions]="{standalone: true}" required>
+              </mat-form-field>
+              <button mat-raised-button [disabled]="newMenu.name.length < 1 || newMenu.desc.length < 1" (click)=addOne() color="primary">Agregar</button>
+            </form>
+              </mat-expansion-panel>
+
+      </mat-accordion>
+
+
+
+  <!-- <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>Crear un nuevo menu!</mat-card-title>
     </mat-card-header>
@@ -20,7 +46,10 @@
     </mat-card-content>
     <mat-card-actions>
     </mat-card-actions>
-  </mat-card>
+  </mat-card> -->
+
+
+
   <br>
   <div class="example-header">
     <mat-card class="example-card">

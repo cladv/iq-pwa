@@ -12,12 +12,13 @@
     </div> -->
 
 
+
+
+
 <mat-sidenav-container class="all-wrap" fullscreen>
   <mat-sidenav #sidenav>
-    <mat-list>
-      <mat-list-item [routerLink]="['/']">Inicio</mat-list-item>
-      <mat-list-item [routerLink]="['menulist']">Menu</mat-list-item>
-    </mat-list>
+    <p>Menus de la App</p>
+    <app-side-nav></app-side-nav>
   </mat-sidenav>
 
   <div class="page-wrap">
@@ -55,6 +56,8 @@
     <main class="content">
       <router-outlet></router-outlet>
     </main>
-    <notification-message></notification-message>
+    <footer>
+      <notification-message></notification-message>
+    </footer>
   </div>
 </mat-sidenav-container>

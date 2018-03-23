@@ -1,0 +1,22 @@
+<mat-list>
+    <mat-divider></mat-divider>
+    <mat-list-item [routerLink]="['/']">Inicio</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Panel 1</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item *ngIf="!(auth.user | async)" [routerLink]="['/signin']">Login</mat-list-item>
+        <mat-list-item *ngIf="(auth.user | async)"[routerLink]="['signoff']">Salir</mat-list-item>
+      </mat-expansion-panel>
+      <mat-divider></mat-divider>
+      <mat-expansion-panel *ngIf="(auth.user | async)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Panel 2</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item [routerLink]="['menulist']">Menu</mat-list-item>
+      </mat-expansion-panel>
+      <mat-divider></mat-divider>
+    </mat-accordion>
+  </mat-list>

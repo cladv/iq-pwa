@@ -35,7 +35,16 @@ export class AuthService {
         }
       });
   }
-
+  get isUserLoggedIn(): boolean {
+    if ((this.afAuth.auth !== null) && (!this.isUserAnonymousLoggedIn)) {
+      return true
+    } else {
+      return false
+    }
+  }
+  get isUserAnonymousLoggedIn(): boolean {
+    return (this.afAuth.authState !== null)
+  }
   ////// OAuth Methods /////
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
