@@ -21,6 +21,7 @@ import { UserSignoffComponent } from './user-signoff/user-signoff.component';
 import { HomeComponent } from './home/home.component';
 
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
+import { MenuEditComponent } from './menu/menu-edit/menu-edit.component';
 import { TopNavComponent } from './ui/top-nav/top-nav.component';
 import { NotificationMessageComponent } from './ui/notification-message/notification-message.component';
 import { FooterNavComponent } from './ui/footer-nav/footer-nav.component';
@@ -34,6 +35,7 @@ import { DialogDeleteComponent } from './ui/dialog-delete/dialog-delete.componen
     UserSignoffComponent,
     HomeComponent,
     MenuListComponent,
+    MenuEditComponent,
     TopNavComponent,
     NotificationMessageComponent,
     FooterNavComponent,
@@ -47,6 +49,7 @@ import { DialogDeleteComponent } from './ui/dialog-delete/dialog-delete.componen
     CoreModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
+  entryComponents: [DialogDeleteComponent, MenuEditComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

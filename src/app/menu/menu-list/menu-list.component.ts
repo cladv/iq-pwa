@@ -5,6 +5,11 @@ import { MaterialModule } from '../../core/material.module';
 import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 
 import { DialogDeleteComponent } from '../../ui/dialog-delete/dialog-delete.component';
+import { MenuService } from '../menu.service';
+import { Menu } from '../menu-model';
+import { MenuEditComponent } from '../menu-edit/menu-edit.component';
+
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-menu-list',
@@ -12,7 +17,7 @@ import { DialogDeleteComponent } from '../../ui/dialog-delete/dialog-delete.comp
   styleUrls: ['./menu-list.component.scss']
 })
 export class MenuListComponent implements AfterViewInit {
-  newMenu = new Menu('', '');
+  newMenu = new Menu('', '', '');
   snackMessage;
   displayedColumns = ['name', 'desc', 'edit', 'delete'];
   dataSource: MatTableDataSource<any>;
@@ -27,10 +32,12 @@ export class MenuListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.afs.collection<any>('menu').snapshotChanges().map((actions) => {
-      return actions.map((a) => {
+//    this.afs.collection<any>('menu').snapshotChanges().map((actions) => {
+      this.afs.collection<Menu>('menu').snapshotChanges().map((actions) => {
+        return actions.map((a) => {
+//        const data = a.payload.doc.data() as any;
         const data = a.payload.doc.data() as Menu;
-        return { id: a.payload.doc.id, name: data.name, desc: data.desc };
+        return { id: a.payload.doc.id, name: data.name, desc: data.desc, router: data.router };
       });
     }).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
@@ -38,8 +45,6 @@ export class MenuListComponent implements AfterViewInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
-
-
   }
 
   applyFilter(filterValue: string) {
@@ -51,14 +56,16 @@ export class MenuListComponent implements AfterViewInit {
   addOne() {
     const menu = {
       name: this.newMenu.name,
-      desc: this.newMenu.desc
+      desc: this.newMenu.desc,
+      route: this.newMenu.router
     }
     this.afs.collection('menu').add(menu).then(ref => {
       console.log('Added document with ID: ', ref.id);
       this.snackMessage = 'Menu creado exitosamente';
       this.openSnackBar();
-      this.newMenu.name = ''
-      this.newMenu.desc = ''
+      this.newMenu.name = '';
+      this.newMenu.desc = '';
+      this.newMenu.router = '';
     });
   }
   deleteOne(data) {
@@ -69,9 +76,9 @@ export class MenuListComponent implements AfterViewInit {
   }
 
   openDialogEdit(data): void {
-    const dialogRef = this.dialog.open(MenuComponent, {
+    const dialogRef = this.dialog.open(MenuEditComponent, {
       width: '350px',
-      data: { name: data.name, desc: data.desc }
+      data: { uid: data.id, name: data.name, desc: data.desc, router: data.router }
     });
   }
 
