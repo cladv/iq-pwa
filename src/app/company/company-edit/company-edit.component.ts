@@ -4,19 +4,19 @@ import { AuthService } from '../../core/auth.service';
 import { MaterialModule } from '../../core/material.module';
 import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 
-import { Profile } from '../profile-model';
+import { Company } from '../company-model';
 
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Component({
-  selector: 'app-profile-edit',
-  templateUrl: './profile-edit.component.html',
-  styleUrls: ['./profile-edit.component.scss']
+  selector: 'app-company-edit',
+  templateUrl: './company-edit.component.html',
+  styleUrls: ['./company-edit.component.scss']
 })
-export class ProfileEditComponent implements OnInit {
-  newData = new Profile();
+export class CompanyEditComponent implements OnInit {
+  newData = new Company();
   uid;
   snackMessage;
 
@@ -25,25 +25,27 @@ export class ProfileEditComponent implements OnInit {
     public authService: AuthService,
     private menuService: AngularFirestore,
     public snackBar: MatSnackBar) {
-    console.log(data);
-    this.newData.name = data.name;
-    this.newData.desc = data.desc;
-    this.newData.monitoring = data.monitoring;
-    this.newData.isActive = data.isActive;    
-    this.uid = this.data.uid;
+      this.newData.clear();
+      this.newData.rut = data.rut;
+      this.newData.name = data.name;
+      this.newData.country = data.country;
+      this.newData.logo = data.logo;
+      this.newData.isActive = data.isActive;    
+      this.uid = this.data.uid;
   }
 
   ngOnInit() {
   }
   changeOne() {
     const data = {
+      rut: this.newData.rut,
       name: this.newData.name,
-      desc: this.newData.desc,
-      monitoring: this.newData.monitoring,
+      country: this.newData.country,
+      logo: this.newData.logo,
       isActive: this.newData.isActive
     }
-    this.menuService.doc('profile/' + this.uid).update(data);
-    this.snackMessage = 'Perfil actualizado';
+    this.menuService.doc('company/' + this.uid).update(data);
+    this.snackMessage = 'Compania actualizada';
     this.openSnackBar();
   }
   openSnackBar() {

@@ -31,6 +31,8 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { ProfileListComponent } from './profile/profile-list/profile-list.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
+import { CompanyListComponent } from './company/company-list/company-list.component';
+import { CompanyEditComponent } from './company/company-edit/company-edit.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { ProfileEditComponent } from './profile/profile-edit/profile-edit.compon
     UserEditComponent,
     ProfileListComponent,
     ProfileEditComponent,
+    CompanyListComponent,
+    CompanyEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,7 @@ import { ProfileEditComponent } from './profile/profile-edit/profile-edit.compon
     CoreModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  entryComponents: [DialogDeleteComponent, MenuEditComponent, UserEditComponent, ProfileEditComponent],
+  entryComponents: [DialogDeleteComponent, MenuEditComponent, UserEditComponent, ProfileEditComponent, CompanyEditComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

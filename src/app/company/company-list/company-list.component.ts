@@ -6,20 +6,20 @@ import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatSnackBar } fro
 
 import { DialogDeleteComponent } from '../../ui/dialog-delete/dialog-delete.component';
 //import { MenuService } from '../menu.service';
-import { Profile } from '../profile-model';
-import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
+import { Company } from '../company-model';
+import { CompanyEditComponent } from '../company-edit/company-edit.component';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Component({
-  selector: 'app-profile-list',
-  templateUrl: './profile-list.component.html',
-  styleUrls: ['./profile-list.component.scss']
+  selector: 'app-company-list',
+  templateUrl: './company-list.component.html',
+  styleUrls: ['./company-list.component.scss']
 })
-export class ProfileListComponent implements AfterViewInit {
-  newData = new Profile();
+export class CompanyListComponent implements AfterViewInit {
+  newData = new Company();
   snackMessage;
-  displayedColumns = ['name', 'desc', 'monitoring', 'isActive', 'actions'];
+  displayedColumns = ['rut', 'name', 'country', 'isActive', 'actions'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -32,15 +32,16 @@ export class ProfileListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.afs.collection<Profile>('profile').snapshotChanges().map((actions) => {
+    this.afs.collection<Company>('company').snapshotChanges().map((actions) => {
       return actions.map((a) => {
         //const data = a.payload.doc.data() as any;
-        const data = a.payload.doc.data() as Profile;
+        const data = a.payload.doc.data() as Company;
         return { 
           id: a.payload.doc.id, 
-          name: data.name, 
-          desc: data.desc, 
-          monitoring: data.monitoring,
+          rut: data.rut,
+          name: data.name,  
+          country: data.country,
+          logo: data.logo,
           isActive: data.isActive
         };
       });
@@ -60,32 +61,34 @@ export class ProfileListComponent implements AfterViewInit {
 
   addOne() {
     const profile = {
+      rut: this.newData.rut,
       name: this.newData.name,
-      desc: this.newData.desc,
-      monitoring: 0,
+      country: this.newData.country,
+      logo: '',
       isActive: true,
       createDT: Date.now(),
     }
-    this.afs.collection('profile').add(profile).then(ref => {
+    this.afs.collection('company').add(profile).then(ref => {
       console.log('Added document with ID: ', ref.id);
-      this.snackMessage = 'Perfil creado exitosamente';
+      this.snackMessage = 'Compania creada exitosamente';
       this.openSnackBar();
       this.newData.clear();
     });
   }
   deleteOne(data) {
     console.log(data);
-    this.afs.doc('profile/' + data.id).delete().then(() => {
+    this.afs.doc('company/' + data.id).delete().then(() => {
     })
   }
 
   openDialogEdit(data): void {
-    const dialogRef = this.dialog.open(ProfileEditComponent, {
+    const dialogRef = this.dialog.open(CompanyEditComponent, {
       width: '350px',
       data: { uid: data.id, 
+              rut: data.rut, 
               name: data.name, 
-              desc: data.desc, 
-              monitoring: data.monitoring,
+              country: data.country,
+              logo: data.logo,
               isActive: data.isActive
             }
     });
@@ -100,7 +103,7 @@ export class ProfileListComponent implements AfterViewInit {
       console.log(`Dialog result: ${result}`);
       if (result) {
         this.deleteOne(data);
-        this.snackMessage = 'Perfil Eliminado!';
+        this.snackMessage = 'Compania Eliminada!';
         this.openSnackBar();
       }
     });

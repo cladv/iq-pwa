@@ -9,6 +9,7 @@ import { HomeComponent } from '../home/home.component';
 import { MenuListComponent } from '../menu/menu-list/menu-list.component';
 import { UserListComponent } from '../user/user-list/user-list.component';
 import { ProfileListComponent } from '../profile/profile-list/profile-list.component';
+import { CompanyListComponent } from '../company/company-list/company-list.component';
 
 import { AuthGuard } from '../core/auth.guard';
 import { CoreModule } from '../core/core.module';
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'signoff', component: UserSignoffComponent, canActivate: [AuthGuard] },
   { path: 'menulist', component: MenuListComponent, canActivate: [AuthGuard] },
   { path: 'userlist', component: UserListComponent, canActivate: [AuthGuard] },
-  { path: 'profilelist', component: ProfileListComponent, canActivate: [AuthGuard] }
+  { path: 'profilelist', component: ProfileListComponent, canActivate: [AuthGuard] },
+  { path: 'companylist', component: CompanyListComponent, canActivate: [AuthGuard] }
 
 ];
 
