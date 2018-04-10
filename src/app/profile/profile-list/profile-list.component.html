@@ -1,0 +1,65 @@
+<div class="form-container">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Nuevo Perfil</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+      <form class="example-form" #formData='ngForm'>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nombre" [(ngModel)]="newData.name" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Descripcion" [(ngModel)]="newData.desc" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Monitor" [(ngModel)]="newData.monitoring" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+        <button mat-raised-button [disabled]="newData.name.length < 1 || newData.desc.length < 1" (click)=addOne() color="primary">Agregar</button>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <br>
+  <div class="example-header">
+    <mat-card class="example-card">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+      </mat-form-field>
+      <mat-icon>search</mat-icon>
+    </mat-card>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table #table [dataSource]="dataSource" [trackBy]="trackByUid" matSort class="animate">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Perfil </mat-header-cell>
+        <mat-cell *matCellDef="let u"> {{ u.name }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="desc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
+        <mat-cell *matCellDef="let u"> {{ u.desc }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="monitoring">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Monitor </mat-header-cell>
+        <mat-cell *matCellDef="let u"> {{ u.monitoring }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="isActive">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Activo </mat-header-cell>
+        <mat-cell *matCellDef="let u"> {{ u.isActive }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let u">
+          <!--button mat-raised-button color="primary" (click)="openDialogEdit(u)">Modificar</button-->
+          <mat-icon (click)="openDialogEdit(u)">description</mat-icon>
+          <mat-icon (click)="openDialogDelete(u)">delete</mat-icon>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+    </mat-table>
+    <!--mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator-->
+  </div>
+</div>

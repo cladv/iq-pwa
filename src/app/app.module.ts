@@ -29,6 +29,8 @@ import { DialogDeleteComponent } from './ui/dialog-delete/dialog-delete.componen
 import { SideNavComponent } from './ui/side-nav/side-nav.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { ProfileListComponent } from './profile/profile-list/profile-list.component';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
     SideNavComponent,
     UserListComponent,
     UserEditComponent,
+    ProfileListComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,7 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
     CoreModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  entryComponents: [DialogDeleteComponent, MenuEditComponent, UserEditComponent],
+  entryComponents: [DialogDeleteComponent, MenuEditComponent, UserEditComponent, ProfileEditComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
