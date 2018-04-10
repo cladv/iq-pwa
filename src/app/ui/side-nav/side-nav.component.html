@@ -1,23 +1,50 @@
 <mat-list>
+  <mat-divider></mat-divider>
+  <mat-list-item [routerLink]="['/']"><mat-icon>home</mat-icon>Inicio</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item *ngIf="!(auth.user | async)" [routerLink]="['/signin']"><mat-icon>account_circle</mat-icon>Login</mat-list-item>
+  <mat-list-item *ngIf="(auth.user | async)" [routerLink]="['signoff']"><mat-icon>exit_to_app</mat-icon>Salir</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-accordion *ngIf="(auth.user | async)">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Setup</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list-item [routerLink]="['menulist']">Menus</mat-list-item>
+      <mat-list-item [routerLink]="['userlist']">Usuarios</mat-list-item>
+    </mat-expansion-panel>
     <mat-divider></mat-divider>
-    <mat-list-item [routerLink]="['/']">Inicio</mat-list-item>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Inyeccion de Gas</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list-item [routerLink]="['menulist']">Menus</mat-list-item>
+      <mat-list-item [routerLink]="['userlist']">Usuarios</mat-list-item>
+    </mat-expansion-panel>
     <mat-divider></mat-divider>
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Panel 1</mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-list-item *ngIf="!(auth.user | async)" [routerLink]="['/signin']">Login</mat-list-item>
-        <mat-list-item *ngIf="(auth.user | async)"[routerLink]="['signoff']">Salir</mat-list-item>
-      </mat-expansion-panel>
-      <mat-divider></mat-divider>
-      <mat-expansion-panel *ngIf="(auth.user | async)">
-        <mat-expansion-panel-header>
-          <mat-panel-title>Panel 2</mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-list-item [routerLink]="['menulist']">Menus</mat-list-item>
-        <mat-list-item [routerLink]="['userlist']">Usuarios</mat-list-item>
-      </mat-expansion-panel>
-      <mat-divider></mat-divider>
-    </mat-accordion>
-  </mat-list>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Stock</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list-item [routerLink]="['menulist']">Menus</mat-list-item>
+      <mat-list-item [routerLink]="['userlist']">Usuarios</mat-list-item>
+    </mat-expansion-panel>
+    <mat-divider></mat-divider>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Mantenimiento</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list-item [routerLink]="['menulist']">Menus</mat-list-item>
+      <mat-list-item [routerLink]="['userlist']">Usuarios</mat-list-item>
+    </mat-expansion-panel>
+    <mat-divider></mat-divider>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Monitoreo</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list-item [routerLink]="['menulist']">Menus</mat-list-item>
+      <mat-list-item [routerLink]="['userlist']">Usuarios</mat-list-item>
+    </mat-expansion-panel>
+    <mat-divider></mat-divider>
+  </mat-accordion>
+</mat-list>
