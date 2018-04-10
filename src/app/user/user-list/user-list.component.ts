@@ -18,7 +18,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements AfterViewInit {
-  newUser = new User('', '', '', '', '');
+  newUser = new User();//('', '', '', '', '');
+  //newUser.photoURL='';
   snackMessage;
   displayedColumns = ['displayName', 'company', 'profile', 'email', 'actions'];
   dataSource: MatTableDataSource<any>;

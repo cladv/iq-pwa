@@ -19,7 +19,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
-  newUser = new User('', '', '', '', '');
+  newUser = new User();//('', '', '', '', '');
   uid;
   snackMessage;
 
