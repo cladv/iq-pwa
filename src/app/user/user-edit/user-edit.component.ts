@@ -4,8 +4,6 @@ import { AuthService } from '../../core/auth.service';
 import { MaterialModule } from '../../core/material.module';
 import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 
-//import { UserService } from '../user.service';
-
 import { User } from '../user-model';
 
 import { MAT_DIALOG_DATA } from '@angular/material';
@@ -19,7 +17,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
-  newUser = new User();//('', '', '', '', '');
+  newDoc = new User();
   uid;
   snackMessage;
 
@@ -29,11 +27,12 @@ export class UserEditComponent implements OnInit {
     private menuService: AngularFirestore,
     public snackBar: MatSnackBar) {
     console.log(data);
-    this.newUser.displayName = data.displayName;
-    this.newUser.email = data.email;
-    this.newUser.photoURL = data.photoURL;
-    this.newUser.company = data.company;
-    this.newUser.profile = data.profile;
+    this.newDoc.clear();
+    this.newDoc.displayName = data.displayName;
+    this.newDoc.email = data.email;
+    this.newDoc.photoURL = data.photoURL;
+    this.newDoc.company = data.company;
+    this.newDoc.profile = data.profile;
     this.uid = this.data.uid;
   }
 
@@ -41,11 +40,11 @@ export class UserEditComponent implements OnInit {
   }
   changeOne() {
     const user = {
-      displayName: this.newUser.displayName,
-      email: this.newUser.email,
-      photoURL: this.newUser.photoURL,
-      company: this.newUser.company,
-      profile: this.newUser.profile
+      displayName: this.newDoc.displayName,
+      email: this.newDoc.email,
+      photoURL: this.newDoc.photoURL,
+      company: this.newDoc.company,
+      profile: this.newDoc.profile
     }
     this.menuService.doc('users/' + this.uid).update(user);
     this.snackMessage = 'Usuario actualizado';

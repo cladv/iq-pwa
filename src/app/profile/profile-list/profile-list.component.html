@@ -7,15 +7,15 @@
       </mat-expansion-panel-header>
       <form class="example-form" #formData='ngForm'>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Nombre" [(ngModel)]="newData.name" [ngModelOptions]="{standalone: true}" required>
+          <input matInput placeholder="Nombre" [(ngModel)]="newDoc.name" [ngModelOptions]="{standalone: true}" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Descripcion" [(ngModel)]="newData.desc" [ngModelOptions]="{standalone: true}" required>
+          <input matInput placeholder="Descripcion" [(ngModel)]="newDoc.desc" [ngModelOptions]="{standalone: true}" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Monitor" [(ngModel)]="newData.monitoring" [ngModelOptions]="{standalone: true}" required>
+          <input matInput placeholder="Monitor" [(ngModel)]="newDoc.monitoring" [ngModelOptions]="{standalone: true}" required>
         </mat-form-field>
-        <button mat-raised-button [disabled]="newData.name.length < 1 || newData.desc.length < 1" (click)=addOne() color="primary">Agregar</button>
+        <button mat-raised-button [disabled]="newDoc.name.length < 1 || newDoc.desc.length < 1" (click)=addOne() color="primary">Agregar</button>
       </form>
     </mat-expansion-panel>
   </mat-accordion>

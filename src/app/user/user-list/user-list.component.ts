@@ -18,7 +18,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements AfterViewInit {
-  newUser = new User();//('', '', '', '', '');
+  newDoc = new User();//('', '', '', '', '');
   //newUser.photoURL='';
   snackMessage;
   displayedColumns = ['displayName', 'company', 'profile', 'email', 'actions'];
@@ -64,21 +64,17 @@ export class UserListComponent implements AfterViewInit {
 
   addOne() {
     const user = {
-      displayName: this.newUser.displayName,
-      email: this.newUser.email,
-      photoURL: this.newUser.photoURL,
-      company: this.newUser.company,
-      profile: this.newUser.profile
+      displayName: this.newDoc.displayName,
+      email: this.newDoc.email,
+      photoURL: this.newDoc.photoURL,
+      company: this.newDoc.company,
+      profile: this.newDoc.profile
     }
     this.afs.collection('users').add(user).then(ref => {
       console.log('Added document with ID: ', ref.id);
       this.snackMessage = 'Menu creado exitosamente';
       this.openSnackBar();
-      this.newUser.displayName = '';
-      this.newUser.email = '';
-      this.newUser.photoURL = '';
-      this.newUser.company = '';
-      this.newUser.profile = '';
+      this.newDoc.clear();
     });
   }
   deleteOne(data) {

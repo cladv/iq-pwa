@@ -17,7 +17,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
   styleUrls: ['./profile-list.component.scss']
 })
 export class ProfileListComponent implements AfterViewInit {
-  newData = new Profile();
+  newDoc = new Profile();
   snackMessage;
   displayedColumns = ['name', 'desc', 'monitoring', 'isActive', 'actions'];
   dataSource: MatTableDataSource<any>;
@@ -36,10 +36,10 @@ export class ProfileListComponent implements AfterViewInit {
       return actions.map((a) => {
         //const data = a.payload.doc.data() as any;
         const data = a.payload.doc.data() as Profile;
-        return { 
-          id: a.payload.doc.id, 
-          name: data.name, 
-          desc: data.desc, 
+        return {
+          id: a.payload.doc.id,
+          name: data.name,
+          desc: data.desc,
           monitoring: data.monitoring,
           isActive: data.isActive
         };
@@ -60,8 +60,8 @@ export class ProfileListComponent implements AfterViewInit {
 
   addOne() {
     const profile = {
-      name: this.newData.name,
-      desc: this.newData.desc,
+      name: this.newDoc.name,
+      desc: this.newDoc.desc,
       monitoring: 0,
       isActive: true,
       createDT: Date.now(),
@@ -70,7 +70,7 @@ export class ProfileListComponent implements AfterViewInit {
       console.log('Added document with ID: ', ref.id);
       this.snackMessage = 'Perfil creado exitosamente';
       this.openSnackBar();
-      this.newData.clear();
+      this.newDoc.clear();
     });
   }
   deleteOne(data) {
@@ -82,12 +82,13 @@ export class ProfileListComponent implements AfterViewInit {
   openDialogEdit(data): void {
     const dialogRef = this.dialog.open(ProfileEditComponent, {
       width: '350px',
-      data: { uid: data.id, 
-              name: data.name, 
-              desc: data.desc, 
-              monitoring: data.monitoring,
-              isActive: data.isActive
-            }
+      data: {
+        uid: data.id,
+        name: data.name,
+        desc: data.desc,
+        monitoring: data.monitoring,
+        isActive: data.isActive
+      }
     });
   }
 

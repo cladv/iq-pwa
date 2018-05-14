@@ -17,7 +17,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
   styleUrls: ['./company-list.component.scss']
 })
 export class CompanyListComponent implements AfterViewInit {
-  newData = new Company();
+  newDoc = new Company();
   snackMessage;
   displayedColumns = ['rut', 'name', 'country', 'isActive', 'actions'];
   dataSource: MatTableDataSource<any>;
@@ -61,9 +61,9 @@ export class CompanyListComponent implements AfterViewInit {
 
   addOne() {
     const profile = {
-      rut: this.newData.rut,
-      name: this.newData.name,
-      country: this.newData.country,
+      rut: this.newDoc.rut,
+      name: this.newDoc.name,
+      country: this.newDoc.country,
       logo: '',
       isActive: true,
       createDT: Date.now(),
@@ -72,7 +72,7 @@ export class CompanyListComponent implements AfterViewInit {
       console.log('Added document with ID: ', ref.id);
       this.snackMessage = 'Compania creada exitosamente';
       this.openSnackBar();
-      this.newData.clear();
+      this.newDoc.clear();
     });
   }
   deleteOne(data) {

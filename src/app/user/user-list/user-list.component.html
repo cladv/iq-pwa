@@ -8,15 +8,15 @@
       <!--app-user-signin></app-user-signin-->
       <form class="example-form" #formData='ngForm'>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Nombre" [(ngModel)]="newUser.displayName" [ngModelOptions]="{standalone: true}" required>
+          <input matInput placeholder="Nombre" [(ngModel)]="newDoc.displayName" [ngModelOptions]="{standalone: true}" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" [(ngModel)]="newUser.email" [ngModelOptions]="{standalone: true}" required>
+          <input matInput placeholder="Email" [(ngModel)]="newDoc.email" [ngModelOptions]="{standalone: true}" required>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Compania" [(ngModel)]="newUser.company" [ngModelOptions]="{standalone: true}" required>
+          <input matInput placeholder="Compania" [(ngModel)]="newDoc.company" [ngModelOptions]="{standalone: true}" required>
         </mat-form-field>
-        <button mat-raised-button [disabled]="newUser.displayName.length < 1 || newUser.email.length < 1" (click)=addOne() color="primary">Agregar</button>
+        <button mat-raised-button [disabled]="newDoc.displayName.length < 1 || newDoc.email.length < 1" (click)=addOne() color="primary">Agregar</button>
       </form>
     </mat-expansion-panel>
   </mat-accordion>

@@ -16,7 +16,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
   styleUrls: ['./profile-edit.component.scss']
 })
 export class ProfileEditComponent implements OnInit {
-  newData = new Profile();
+  newDoc = new Profile();
   uid;
   snackMessage;
 
@@ -26,10 +26,10 @@ export class ProfileEditComponent implements OnInit {
     private menuService: AngularFirestore,
     public snackBar: MatSnackBar) {
     console.log(data);
-    this.newData.name = data.name;
-    this.newData.desc = data.desc;
-    this.newData.monitoring = data.monitoring;
-    this.newData.isActive = data.isActive;    
+    this.newDoc.name = data.name;
+    this.newDoc.desc = data.desc;
+    this.newDoc.monitoring = data.monitoring;
+    this.newDoc.isActive = data.isActive;    
     this.uid = this.data.uid;
   }
 
@@ -37,10 +37,10 @@ export class ProfileEditComponent implements OnInit {
   }
   changeOne() {
     const data = {
-      name: this.newData.name,
-      desc: this.newData.desc,
-      monitoring: this.newData.monitoring,
-      isActive: this.newData.isActive
+      name: this.newDoc.name,
+      desc: this.newDoc.desc,
+      monitoring: this.newDoc.monitoring,
+      isActive: this.newDoc.isActive
     }
     this.menuService.doc('profile/' + this.uid).update(data);
     this.snackMessage = 'Perfil actualizado';

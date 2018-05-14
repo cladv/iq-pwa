@@ -6,16 +6,16 @@
       <mat-card-content>
         <form class="example-form" #formData='ngForm'>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Nombre" [(ngModel)]="newUser.displayName" [ngModelOptions]="{standalone: true}" required>
+            <input matInput placeholder="Nombre" [(ngModel)]="newDoc.displayName" [ngModelOptions]="{standalone: true}" required>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Compania" [(ngModel)]="newUser.company" [ngModelOptions]="{standalone: true}" required>
+            <input matInput placeholder="Compania" [(ngModel)]="newDoc.company" [ngModelOptions]="{standalone: true}" required>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Perfil" [(ngModel)]="newUser.profile" [ngModelOptions]="{standalone: true}" required>
+            <input matInput placeholder="Perfil" [(ngModel)]="newDoc.profile" [ngModelOptions]="{standalone: true}" required>
           </mat-form-field>
           <button mat-button [mat-dialog-close]="false">Salir</button>
-          <button mat-raised-button [disabled]="newUser.displayName.length < 1 || newUser.displayName.length < 1" (click)=changeOne() color="primary">Modificar</button>
+          <button mat-raised-button [disabled]="newDoc.displayName.length < 1 || newDoc.displayName.length < 1" (click)=changeOne() color="primary">Modificar</button>
         </form>
       </mat-card-content>
       <mat-card-actions>

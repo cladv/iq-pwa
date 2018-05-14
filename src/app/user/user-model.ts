@@ -15,10 +15,13 @@ export class User {
         public company: string;
         public profile: string;
         constructor() {
+            this.clear();
+          }
+        clear(){
             this.displayName = '';
             this.email = '';
             this.photoURL = '';
             this.company = '';
             this.profile = '';
-          }
+        }
 }

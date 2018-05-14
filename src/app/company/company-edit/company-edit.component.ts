@@ -16,7 +16,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
   styleUrls: ['./company-edit.component.scss']
 })
 export class CompanyEditComponent implements OnInit {
-  newData = new Company();
+  newDoc = new Company();
   uid;
   snackMessage;
 
@@ -25,12 +25,12 @@ export class CompanyEditComponent implements OnInit {
     public authService: AuthService,
     private menuService: AngularFirestore,
     public snackBar: MatSnackBar) {
-      this.newData.clear();
-      this.newData.rut = data.rut;
-      this.newData.name = data.name;
-      this.newData.country = data.country;
-      this.newData.logo = data.logo;
-      this.newData.isActive = data.isActive;    
+      this.newDoc.clear();
+      this.newDoc.rut = data.rut;
+      this.newDoc.name = data.name;
+      this.newDoc.country = data.country;
+      this.newDoc.logo = data.logo;
+      this.newDoc.isActive = data.isActive;    
       this.uid = this.data.uid;
   }
 
@@ -38,11 +38,11 @@ export class CompanyEditComponent implements OnInit {
   }
   changeOne() {
     const data = {
-      rut: this.newData.rut,
-      name: this.newData.name,
-      country: this.newData.country,
-      logo: this.newData.logo,
-      isActive: this.newData.isActive
+      rut: this.newDoc.rut,
+      name: this.newDoc.name,
+      country: this.newDoc.country,
+      logo: this.newDoc.logo,
+      isActive: this.newDoc.isActive
     }
     this.menuService.doc('company/' + this.uid).update(data);
     this.snackMessage = 'Compania actualizada';
